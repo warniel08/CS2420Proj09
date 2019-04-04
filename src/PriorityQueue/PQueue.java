@@ -18,20 +18,43 @@ public class PQueue<T extends Comparable<? super T>> {
     
     // method to insert() a newItem into the pq throws exception if full
     public void insert(T item) throws PQueueException {
-        int curr = items.indexOf(item);
-        // if the item to insert is is equal to curr then throw exception
-        if (item.equals(items.get(curr))) {
-            throw new PQueueException("PriorityQueue Exception: " +
-                    "Insertion failed, duplicate item");
-        } else {
-            // use binarySearch to find index where to add item
-            int index = binarySearch(items, 0, size_-1, item);
-            items.add(index, item);
+        int curr;
+        System.out.println("Items is empty: " + items.isEmpty()); 
+        
+        // if the item to insert is equal to curr then throw exception
+        if (items.isEmpty()) {
+            curr = 0;
+            items.add(item);
+            curr = items.indexOf(item);
+            System.out.println("curr in items.Empty() = " + curr);
             size_++;
+        } else {
+//            if (item.equals(items.get(0))) {
+//                throw new PQueueException("PriorityQueue Exception: " +
+//                        "Insertion failed, duplicate item");
+//            } else {
+                if (items.size() > 1) {
+                    // use binarySearch to find index where to add item
+                    int index;
+                    index = binarySearch(items, 0, size_ - 1, item);
+                    items.add(index, item);
+                    size_++;
+                    curr = index;
+                } else {
+                    if (items.get(0).compareTo(item) < 0) {
+                        items.add(item);
+                        size_++;
+                    } else {
+                        items.add(0, item);
+                        size_++;
+                    }
+                }
+//            }
         }
     }
     
-    public int binarySearch(ArrayList<T> items, int first, int last, T item) {
+    // binarySearch function to find index of where to place item in the ArrayList
+    private int binarySearch(ArrayList<T> items, int first, int last, T item) {
         int index;
         if (first > last) {
             index = -1;
