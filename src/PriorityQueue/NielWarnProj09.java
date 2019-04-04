@@ -12,6 +12,7 @@ public class NielWarnProj09 {
         newPQueue.insert(57.39);
         newPQueue.insert(1.61);
         System.out.println("My newPQueue is empty: " + newPQueue.isEmpty());
+        newPQueue.printQueue();
     }
 
 }

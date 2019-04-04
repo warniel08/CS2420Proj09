@@ -36,10 +36,10 @@ public class PQueue<T extends Comparable<? super T>> {
                 if (items.size() > 1) {
                     // use binarySearch to find index where to add item
                     int index;
-                    index = binarySearch(items, 0, size_ - 1, item);
-                    items.add(index, item);
+                    binarySearch(items, 0, size_ - 1, item);
+//                    items.add(index, item);
                     size_++;
-                    curr = index;
+//                    curr = index;
                 } else {
                     if (items.get(0).compareTo(item) < 0) {
                         items.add(item);
@@ -53,21 +53,28 @@ public class PQueue<T extends Comparable<? super T>> {
         }
     }
     
+    public void printQueue() {
+        for (T item: items) {
+            System.out.println(item);
+        }
+    }
+    
     // binarySearch function to find index of where to place item in the ArrayList
-    private int binarySearch(ArrayList<T> items, int first, int last, T item) {
+    private void binarySearch(ArrayList<T> items, int first, int last, T item) {
         int index;
         if (first > last) {
             index = -1;
         } else {
             int mid = (first + last) / 2;
             if (item == items.get(mid)) {
-                index = mid;
+                items.add(item);
             } else if (item.compareTo(items.get(mid)) < 0) {
-                index = binarySearch(items, first, mid-1, item);
+                binarySearch(items, first, mid-1, item);
+                items.add(item);
             } else {
-                index = binarySearch(items, mid+1, last, item);
+                binarySearch(items, mid+1, last, item);
+                items.add(item);
             }
         }
-        return index;
     }
 }
