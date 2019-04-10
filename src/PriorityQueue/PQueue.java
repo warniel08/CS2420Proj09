@@ -42,18 +42,19 @@ public class PQueue<T extends Comparable<T>> {
     }
     
     // delete method() returns item of type T and removes it from arrayList
+    // if the array is empty it returns an error exception
     public T delete() {
-        T curr = items.get(items.size() - 1);
-//        if (curr != null) {
-            try {
-                items.remove(items.size() - 1);
-                return curr;
-            } catch (Exception e) {
-                System.out.println("Error! No items to remove: " + e);
-                return curr;
-            }
-//        }
-//        return curr;
+        T curr = null;
+        final String ANSI_RED = "\u001B[31m";
+        final String ANSI_RESET = "\u001B[0m";
+        
+        try {
+            curr = items.get(items.size() - 1);
+            items.remove(curr);
+        } catch (Exception e) {
+            System.out.println("\nError! Priority Queue is empty\n" + ANSI_RED + e + ANSI_RESET);
+        }
+        return curr;
     }
     
     // method to print the values of pqueue to 
@@ -82,9 +83,11 @@ public class PQueue<T extends Comparable<T>> {
             int mid = (first + last) / 2;
             if (item == items.get(mid)) {
                 return mid;
-            } else if (item.compareTo(items.get(mid)) <= 0) {
+            // if value is less than or equal mid value, it returns the index 
+            // this is used if there are duplicates it enters the value before
+            // older duplicate value which keeps priority straight
+            } else if (item.compareTo(items.get(mid)) <= 0) { 
                 index = binarySearch(items, first, mid-1, item);
-                System.out.println("index: " + index);
             } else {
                 index = binarySearch(items, mid+1, last, item);
             }

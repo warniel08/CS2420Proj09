@@ -29,14 +29,14 @@ public class NielWarnProj09 {
         
         // setup variables to be used in menu
         int userMenuChoice; // user's menu choice
-        double userVal;
+        Double userVal;
         boolean again = true; // when user wants to run program again while is true
         PQueue<Double> newPQueue = new PQueue<>(); // creation of new priority queue
         Scanner userInput = new Scanner(System.in); // user input
         
         // display menu choices to run each part of the PQueue
         do {
-            System.out.println("Priority Queue Menu: ");
+            System.out.println("\nPriority Queue Menu: ");
             System.out.println("\t1 - Insert an item");
             System.out.println("\t2 - Remove an item");
             System.out.println("\t3 - Check if it is Empty");
@@ -53,27 +53,29 @@ public class NielWarnProj09 {
                     System.out.print("Please enter a number with a decimal value: ");
                     userVal = userInput.nextDouble();
                     newPQueue.insert(userVal);
-                    System.out.println("User value inserted into priority queue");
+                    System.out.println("\nUser value " + userVal + " inserted into priority queue");
                     break;
                 case 2:
                     userVal = newPQueue.delete();
-                    System.out.println("User value " + userVal + " removed from priority queue");
+                    if (userVal != null) {
+                        System.out.println("\nUser value " + userVal + " removed from priority queue");
+                    } 
                     break;
                 case 3:
-                    System.out.println("The priority queue is empty: " + newPQueue.isEmpty());
+                    System.out.println("\nThe priority queue is empty: " + newPQueue.isEmpty());
                     break;
                 case 4:
-                    System.out.println("Here are the values of your priority queue: ");
+                    System.out.println("\nHere are the values of your priority queue: ");
                     newPQueue.printQueue();
                     break;
                 case 5:
-                    System.out.println("The size of your priority queue is: " + newPQueue.sizeOfQ());
+                    System.out.println("\nThe size of your priority queue is: " + newPQueue.sizeOfQ());
                     break;
                 case 6:
                     again = false;
                     break;
                 default:
-                    System.out.println("Invalid choice, please try again...");   
+                    System.out.println("\nInvalid choice, please try again...");   
             }
         } while(again);
     }
