@@ -12,10 +12,9 @@
  *  items, check if ArrayList is empty, return the size
  *  of the Array List and print the items in the Array List.
  */
-package PriorityQueue;
+package NielWarnProj09;
 
 import java.util.Scanner;
-
 
 public class NielWarnProj09 {
 
@@ -50,13 +49,15 @@ public class NielWarnProj09 {
             // switch statement for menu choices
             switch (userMenuChoice) {
                 case 1:
-                    System.out.print("Please enter a number with a decimal value: ");
+                    System.out.print("Please enter a floating point value: ");
                     userVal = userInput.nextDouble();
                     newPQueue.insert(userVal);
                     System.out.println("\nUser value " + userVal + " inserted into priority queue");
                     break;
                 case 2:
                     userVal = newPQueue.delete();
+                    // if the delete method returns a null value we don't want to use it
+                    // will print value that was removed from the pq if val is not null
                     if (userVal != null) {
                         System.out.println("\nUser value " + userVal + " removed from priority queue");
                     } 

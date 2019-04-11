@@ -12,7 +12,7 @@
  *  method to return boolean value.
  */
  
-package PriorityQueue;
+package NielWarnProj09;
 
 import java.util.ArrayList;
 
@@ -45,7 +45,7 @@ public class PQueue<T extends Comparable<T>> {
     // if the array is empty it returns an error exception
     public T delete() {
         T curr = null;
-        final String ANSI_RED = "\u001B[31m";
+        final String ANSI_RED = "\u001B[31m";  // color red to be used to highlight exception in console
         final String ANSI_RESET = "\u001B[0m";
         
         try {
@@ -58,7 +58,7 @@ public class PQueue<T extends Comparable<T>> {
     }
     
     // method to print the values of pqueue to 
-    // help with testing if the insert is working correctly
+    // be available option to the user if they select to print
     public void printQueue() {
         if (items.size() <= 0) {
             System.out.println("The priority queue is empty");
@@ -69,7 +69,8 @@ public class PQueue<T extends Comparable<T>> {
         }
     }
     
-    // method to return the size of the queue, used for testing
+    // method to return the size of the queue, to be
+    // available option to the user if they want to see the size
     public int sizeOfQ(){
         return items.size();
     }
